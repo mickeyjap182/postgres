@@ -1,0 +1,20 @@
+# Use postgres/example user/password credential
+version: "3.1"
+services:
+  pgtest01:
+    image: postgres:13
+    container_name: "pgtest01"
+    restart: always
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+    ports:
+      - "15432:5432"
+    volumes:
+      - database:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+
+volumes:
+  database:
+    driver: local
