@@ -33,9 +33,5 @@ create table post_image{
     insert_date timestamp with time zone,
     update_date timestamp with time zone
 );
-
-insert into users values ('1111','pass',current_timestamp, current_timestamp );
-/** after configuration */
-# publication
-CREATE OR REPLACE PUBLICATION pub FOR ALL TABLES;
-
+＃ subscriber
+CREATE SUBSCRIPTION sub3 CONNECTION 'host=pgtest01-primary port=5432 user=pguser01 dbname=postgres password=pgpass01' PUBLICATION pub;

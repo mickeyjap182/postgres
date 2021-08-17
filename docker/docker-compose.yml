@@ -7,11 +7,11 @@ services:
     env_file:
       - ./01/pg_env.env
     ports:
-      - "30000:5432"
+      - "30001:5432"
     volumes:
       - ./01/tmp:/var/lib/postgresql/data
-      - ./01/init:/docker-entrypoint-initdb.d
       - ./01/logs:/var/log
+      - ./01/init:/docker-entrypoint-initdb.d
   pgtest02-replica:
     image: postgres:12
     container_name: "pgtest02-replica"
@@ -20,7 +20,11 @@ services:
     env_file:
       - ./02/pg_env.env
     ports:
-      - "30001:5432"
+      - "30002:5432"
+    volumes:
+      - ./02/tmp:/var/lib/postgresql/data
+      - ./02/logs:/var/log
+      - ./02/init:/docker-entrypoint-initdb.d
   pgtest03-replica:
     image: postgres:12
     container_name: "pgtest03-replica"
@@ -29,7 +33,11 @@ services:
     env_file:
       - ./03/pg_env.env
     ports:
-      - "30002:5432"
+      - "30003:5432"
+    volumes:
+      - ./03/tmp:/var/lib/postgresql/data
+      - ./03/logs:/var/log
+      - ./03/init:/docker-entrypoint-initdb.d
 volumes:
   database:
     driver: local
