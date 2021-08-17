@@ -1,3 +1,2 @@
 .DS_Store
 /docker/*/tmp/sub/*
-!/docker/*/tmp/sub/.gitkeep

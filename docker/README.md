@@ -9,7 +9,7 @@ planning...
 
 - download and build container.
 ```
-sudo docker-compose up -d
+sudo /bin/bash ./before.sh && sudo docker-compose up -d
 ```
 
 - login to container as root.
