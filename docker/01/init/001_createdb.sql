@@ -23,7 +23,7 @@ create table posts
     insert_date timestamp with time zone,
     update_date timestamp with time zone
 );
-create table post_image{
+create table post_image
 (
     post_image_id bigint,
     post_id bigint,
@@ -36,6 +36,6 @@ create table post_image{
 
 insert into users values ('1111','pass',current_timestamp, current_timestamp );
 /** after configuration */
-# publication
-CREATE OR REPLACE PUBLICATION pub FOR ALL TABLES;
+-- publication
+-- CREATE OR REPLACE PUBLICATION pub FOR ALL TABLES;
 

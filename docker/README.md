@@ -22,7 +22,22 @@ VARS=aaa envsubst < base.tpl > replaced.conf
 sudo /bin/bash ./before.sh && sudo docker-compose up -d
 ```
 
+- pg_hba.conf
+```
+# IPv4 local connections:
+# host    all             all             127.0.0.1/32            trust
+host    all             all             0.0.0.0/0            trust
+
+```
+
+```
+docker-compose restart
+```
+
+
 - Please confirm it is enable to login container as root and connect other server via docker network. and if you exit from container bash session, you should "press ctrl+c then ctrl+d". 
+
+
 
 ```
 # pgtest01-primary.
@@ -30,6 +45,10 @@ docker exec -it pgtest01-primary /bin/bash
 export PGPASSWORD=pgpass01 && psql -h localhost -p5432 -U pguser01 -d postgres
 export PGPASSWORD=pgpass02 && psql -h pgtest02-replica -p5432 -U pguser02 -d postgres
 export PGPASSWORD=pgpass03 && psql -h pgtest03-replica -p5432 -U pguser03 -d postgres
+export PGPASSWORD=pgpass04 && psql -h pgtest04-remote -p5432 -U pguser04 -d postgres
+
+# if you use fdw extension, you should create each objects inside of the pgtest01-primary ;
+
 
 # pgtest02-replica.
 docker exec -it pgtest02-replica /bin/bash
@@ -42,7 +61,10 @@ docker exec -it pgtest03-replica /bin/bash
 export PGPASSWORD=pgpass03 && psql -h localhost -p5432 -U pguser03 -d postgres
 export PGPASSWORD=pgpass01 && psql -h pgtest01-primary -p5432 -U pguser01 -d postgres
 export PGPASSWORD=pgpass02 && psql -h pgtest02-replica -p5432 -U pguser02 -d postgres
+
+
 ```
+
 
 
 - connect to database on the container from host.
@@ -82,7 +104,7 @@ docker network ls
 ### destroy
 if you wanna destroy all. run following command.
 ```
-docker-compose down --rmi all --volumes --remove-orphans
+docker-compose down --rmi all --volumes --remove-orphans;
 
-sudo /bin/bash ./clear.sh
+/bin/bash ./clear.sh
 ```

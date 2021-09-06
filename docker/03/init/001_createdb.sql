@@ -23,7 +23,7 @@ create table posts
     insert_date timestamp with time zone,
     update_date timestamp with time zone
 );
-create table post_image{
+create table post_image
 (
     post_image_id bigint,
     post_id bigint,
@@ -33,5 +33,5 @@ create table post_image{
     insert_date timestamp with time zone,
     update_date timestamp with time zone
 );
-＃ subscriber
-CREATE SUBSCRIPTION sub3 CONNECTION 'host=pgtest01-primary port=5432 user=pguser01 dbname=postgres password=pgpass01' PUBLICATION pub;
+-- subscriber
+-- CREATE SUBSCRIPTION sub3 CONNECTION 'host=pgtest01-primary port=5432 user=pguser01 dbname=postgres password=pgpass01' PUBLICATION pub;
