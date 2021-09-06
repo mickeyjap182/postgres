@@ -12,6 +12,8 @@ services:
       - ./01/tmp:/var/lib/postgresql/data
       - ./01/logs:/var/log
       - ./01/init:/docker-entrypoint-initdb.d
+    networks:
+      - cluster_netw
   pgtest02-replica:
     image: postgres:12
     container_name: "pgtest02-replica"
@@ -25,6 +27,8 @@ services:
       - ./02/tmp:/var/lib/postgresql/data
       - ./02/logs:/var/log
       - ./02/init:/docker-entrypoint-initdb.d
+    networks:
+      - cluster_netw
   pgtest03-replica:
     image: postgres:12
     container_name: "pgtest03-replica"
@@ -38,6 +42,26 @@ services:
       - ./03/tmp:/var/lib/postgresql/data
       - ./03/logs:/var/log
       - ./03/init:/docker-entrypoint-initdb.d
+    networks:
+      - cluster_netw
+  pgtest04-remote:
+    image: postgres:12
+    container_name: "pgtest04-remote"
+    depends_on:
+      - pgtest01-primary
+    env_file:
+      - ./04/pg_env.env
+    ports:
+      - "30004:5432"
+    volumes:
+      - ./04/tmp:/var/lib/postgresql/data
+      - ./04/logs:/var/log
+      - ./04/init:/docker-entrypoint-initdb.d
+    networks:
+      - cluster_netw
 volumes:
   database:
     driver: local
+networks:
+  cluster_netw:
+    driver: bridge
