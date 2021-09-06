@@ -5,7 +5,7 @@ DROP USER MAPPING IF EXISTS FOR pguser01 SERVER foreign_server;
 DROP FOREIGN TABLE IF EXISTS foreign_tenant CASCADE;
 
 CREATE SERVER foreign_server
-        FOREIGN DAT¥qA WRAPPER postgres_fdw
+        FOREIGN DATA WRAPPER postgres_fdw
         OPTIONS (host 'pgtest04-remote', port '5432', dbname 'postgres');
 
 CREATE USER MAPPING FOR pguser01
