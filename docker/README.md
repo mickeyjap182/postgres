@@ -63,6 +63,10 @@ export PGPASSWORD=pgpass01 && psql -h pgtest01-primary -p5432 -U pguser01 -d pos
 export PGPASSWORD=pgpass02 && psql -h pgtest02-replica -p5432 -U pguser02 -d postgres
 
 
+# pgtest04-remote.
+docker exec -it pgtest04-remote /bin/bash
+export PGPASSWORD=pgpass04 && psql -h localhost -p5432 -U pguser04 -d postgres
+
 ```
 
 

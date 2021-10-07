@@ -1,1 +1,11 @@
--- dummy
+-- dummy	
+BEGIN;
+
+SELECT * FROM tenant ORDER BY update_date DESC;
+
+INSERT INTO tenant VALUES(3, 'drugstore103', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+SELECT * FROM tenant ORDER BY update_date DESC;
+
+-- ROLLBACK;
+-- COMMIT;
