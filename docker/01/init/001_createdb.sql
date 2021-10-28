@@ -1,3 +1,12 @@
+create table stores if exists
+(
+    id text UNIQUE,
+    name varchar(100),
+    infomation bson,
+    insert_date timestamp with time zone,
+    update_date timestamp with time zone
+);
+
 create table users
 (
     user_id text UNIQUE,
@@ -34,8 +43,11 @@ create table post_image
     update_date timestamp with time zone
 );
 
-insert into users values ('1111','pass',current_timestamp, current_timestamp );
 /** after configuration */
+-- DROP roll if exists
+
+
+
 -- publication
 -- CREATE OR REPLACE PUBLICATION pub FOR ALL TABLES;
 

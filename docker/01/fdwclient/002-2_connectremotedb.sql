@@ -1,6 +1,10 @@
 CREATE EXTENSION postgres_fdw;
 
+
 DROP SERVER IF EXISTS foreign_server CASCADE;
+
+-- cascadeで削除されるのは、スキーマ内から参照しているリモートテーブルへのシンボリックリンク。
+DROP SCHEMA IF EXISTS link_origin CASCADE;
 DROP USER MAPPING IF EXISTS FOR pguser01 SERVER foreign_server;
 DROP FOREIGN TABLE IF EXISTS foreign_tenant CASCADE;
 
@@ -12,11 +16,7 @@ CREATE USER MAPPING FOR pguser01
         SERVER foreign_server
         OPTIONS (user 'pguser04', password 'pgpass04');
 
-CREATE FOREIGN TABLE foreign_tenant (
-    tenant_id bigint,
-    tenant_name text,
-    insert_date timestamp with time zone,
-    update_date timestamp with time zone
-)
-        SERVER foreign_server
-        OPTIONS (schema_name 'public', table_name 'tenant');
+CREATE SCHEMA link_origin AUTHORIZATION pguser01;
+IMPORT FOREIGN SCHEMA origin
+    FROM SERVER foreign_server INTO link_origin;
+

@@ -13,6 +13,5 @@ SELECT rolname FROM pg_roles;
 
 -- GRANT SELECT ON ALL TABLES IN SCHEMA postgres To role_name;
 
--- AWS
-CREATE ROLE postgres apg_plan_mgmt;
-GRANT postgres TO apg_plan_mgmt;
+SET <parameter> TO 'off'
+SET <parameter> TO 'on'
