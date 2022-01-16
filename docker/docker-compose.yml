@@ -1,8 +1,16 @@
 # Use postgres/example user/password credential
-version: "3.1"
+version: "3.8"
 services:
   pgtest01-primary:
     image: postgres:12
+    deploy:
+      resources:
+        limits: 
+          cpus: '0.50'
+          memory: 1G
+        reservations: 
+          cpus: '0.25'
+          memory: 64M
     container_name: "pgtest01-primary"
     env_file:
       - ./01/pg_env.env

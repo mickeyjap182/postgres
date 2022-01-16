@@ -88,6 +88,10 @@ export PGPASSWORD=pgpass02 && psql -h localhost -p30002 -U pguser02 -d postgres
 export PGPASSWORD=pgpass03 && psql -h localhost -p30003 -U pguser03 -d postgres
 
 ```
+```
+export PGPASSWORD=pgpass04 && psql -h localhost -p30004 -U pguser04 -d postgres
+
+```
 
 
 ??? TODO login replicated db
@@ -101,10 +105,17 @@ psql -h localhost -p30001 -U pguser01 -d postgres
 psql -h localhost -p30001 -U repl_user -d postgres
 ```
 
+- resource management
+
 ```
 docker network ls
 
 ```
+
+```
+docker stats
+```
+
 ### destroy
 if you wanna destroy all. run following command.
 ```

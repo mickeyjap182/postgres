@@ -1,17 +1,34 @@
 -- shortcut
-\du -- role list.
+\c -- change a current database.
+\d+ -- 作成してるのも全部取ってくる。
+\du -- role(user) list.
 
-\dn -- show schema users
+\dv -- list view.
 
-\dt -- show schemas tables
+\ds -- list sequence. 
+
+\dt -- show schemas tables \dt <schema_name>.*
+\dn -- show schema name
 
 \do -- show operators.
 
 \dx -- like this.
+
 SELECT * FROM pg_catalog.pg_extension;
 -- some
 show search_path
 
+
+
+/**
+ * analyze
+ * 
+ **/
+
+/**
+ * schema: information_schema
+ * 
+ **/
 
 
 /**
@@ -73,20 +90,27 @@ SELECT datname, temp_files FROM pg_stat_database;
 SELECT COUNT(*) FROM sys.dm_exec_sessions
 
 
-pg_available_extension_versions
+/*
+ pg_stat_replication
+ pg_available_extension_versions
+ pg_extension
+*/
+SELECT * FROM pg_stat_replication;
+
 
 -- show extensions.
+SELECT * FROM  pg_available_extension_versions;
+
 SELECT * FROM pg_extension;
 \dx
 
-SELECT * FROM pg_catalog.pg_available_extensions
+SELECT * FROM pg_catalog.pg_available_extensions ORDER BY name;
 
--- 
-SELECT * FROM pg_catalog.pg_foreign_data_wrapper
+
+SELECT * FROM pg_catalog.pg_foreign_data_wrapper;
 
 SELECT * FROM pg_catalog.pg_foreign_server
 SELECT * FROM pg_catalog.pg_foreign_table
-
 
 
 
