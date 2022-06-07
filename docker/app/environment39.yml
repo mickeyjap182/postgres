@@ -1,0 +1,9 @@
+name: base
+channels:
+  - conda-forge
+dependencies:
+  - conda
+  - python=3.9
+  - python.app
+prefix: /Users/yoshitaka.toyama/MyPrograms/miniconda3
+  
