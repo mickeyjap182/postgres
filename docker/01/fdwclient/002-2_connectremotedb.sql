@@ -17,7 +17,7 @@ CREATE SERVER foreign_server
             port '5432', dbname 'postgres', 
             use_remote_estimate 'true'
         );
- 
+
 CREATE USER MAPPING FOR pguser01
         SERVER foreign_server
         OPTIONS (user 'pguser04', password 'pgpass04');
